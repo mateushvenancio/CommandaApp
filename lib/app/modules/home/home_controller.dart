@@ -6,10 +6,16 @@ class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
   @observable
-  int value = 0;
+  bool isLoading = false;
 
   @action
-  void increment() {
-    value++;
+  void setLoading(bool value) {
+    isLoading = value;
+  }
+
+  @action
+  void validate(String value) {
+    setLoading(true);
+    print(value);
   }
 }
