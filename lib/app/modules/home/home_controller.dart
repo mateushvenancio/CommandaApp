@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_controller.g.dart';
@@ -14,8 +15,10 @@ abstract class _HomeControllerBase with Store {
   }
 
   @action
-  void validate(String value) {
-    setLoading(true);
-    print(value);
+  void validate(String value, BuildContext context) {
+    if (value.length > 3) {
+      // Condições
+      Navigator.pushNamed(context, '/qr_scanner');
+    }
   }
 }

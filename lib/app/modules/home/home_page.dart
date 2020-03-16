@@ -58,7 +58,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     height: 60,
                     child: FlatButton(
                       onPressed: (_textController.text.length > 3)
-                          ? () => _homeController.validate(_textController.text)
+                          ? () => _homeController.validate(
+                                _textController.text,
+                                context,
+                              )
                           : null,
                       child: Text('Continuar'),
                       color: Colors.red,
@@ -83,15 +86,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: Observer(
-        builder: (_) {
-          if (_homeController.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return _buildForm();
-          }
-        },
-      ),
+      body: _buildForm(),
     );
   }
 }

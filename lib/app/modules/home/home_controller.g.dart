@@ -40,10 +40,10 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  void validate(String value) {
+  void validate(String value, BuildContext context) {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
     try {
-      return super.validate(value);
+      return super.validate(value, context);
     } finally {
       _$_HomeControllerBaseActionController.endAction(_$actionInfo);
     }
