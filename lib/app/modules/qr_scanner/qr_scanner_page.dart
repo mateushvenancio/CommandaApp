@@ -17,33 +17,19 @@ class _QrScannerPageState
 
   @override
   Widget build(BuildContext context) {
-    Widget _buildAppBar = AppBar(
-      title: Text(
-        widget.title,
-        style: TextStyle(color: Colors.red),
-      ),
-      iconTheme: IconThemeData(color: Colors.red),
-      centerTitle: true,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-    );
-
     _scanQrCode() async {
       try {
         final result = await BarcodeScanner.scan();
         setState(() {
           scanResult = result;
         });
+        await Navigator.pushReplacementNamed(context, '/main');
       } catch (e) {
         print('Erro: $e');
       }
     }
 
-    if (scanResult.isEmpty) {
-      _scanQrCode();
-    } else {
-      Navigator.pushReplacementNamed(context, 'routeName');
-    }
+    if(scanResult == '') _scanQrCode();
 
     return Scaffold(
       // appBar: _buildAppBar,

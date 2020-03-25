@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      initialRoute: '/',
+      initialRoute: '/main',
       onGenerateRoute: Modular.generateRoute,
     );
   }

@@ -23,7 +23,6 @@ class AppModule extends MainModule {
         Router(
           '/main',
           module: MainPageModule(),
-          params: {'': ''},
           transition: TransitionType.fadeIn,
         ),
       ];
