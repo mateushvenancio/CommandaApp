@@ -1,4 +1,4 @@
-import 'package:commandaapp/model/category_item.model.dart';
+import 'package:commandaapp/model/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTile extends StatelessWidget {

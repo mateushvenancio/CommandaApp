@@ -22,6 +22,7 @@ dependencies:
   flutter_mobx: ^1.0.1
   mobx: ^1.0.2+1
   flutter_modular: ^0.5.5
+  font_awesome_flutter: ^8.8.1
   flutter:
     sdk: flutter
 
@@ -81,7 +82,14 @@ flutter:
   fonts:
     - family: Lobster
       fonts:
-        - asset: assets/Lobster-Regular.ttf
+        - asset: assets/fonts/Lobster-Regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+
 
   assets:
-   - assets\images\pizza.png
+   - assets/images/pizza.png
+   - assets/images/bg.jpg

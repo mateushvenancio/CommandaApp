@@ -6,12 +6,12 @@ class MenuItem {
   String image;
   String category;
 
-  MenuItem(
+  MenuItem({
     this.title,
     this.description,
     this.price,
     this.discount,
     this.category,
     this.image,
-  );
+  });
 }
