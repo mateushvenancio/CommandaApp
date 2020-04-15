@@ -1,3 +1,4 @@
+import 'package:commandaapp/app/modules/home/home_controller.dart';
 import 'package:commandaapp/shared/custom_button.dart';
 import 'package:commandaapp/shared/custom_label.dart';
 import 'package:commandaapp/shared/custom_text_field.dart';
@@ -14,13 +15,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
-      color: Colors.white.withOpacity(0.90),
+      color: Colors.white.withOpacity(0.95),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Commanda',
+            'Login',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 25,
@@ -52,10 +53,16 @@ class _LoginPageState extends State<LoginPage> {
           CustomButton(
             backgroundColor: Colors.transparent,
             label: Text('LOGIN'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/main');
+            },
           ),
           SizedBox(height: 10),
           CustomButton(
             label: Text('REGISTRAR', style: TextStyle(color: Colors.white)),
+            onTap: () {
+              ChildrenPageController.of(context).animateTo(2);
+            },
           ),
           SizedBox(height: 10),
           Row(
@@ -95,6 +102,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ],
+          ),
+          SizedBox(height: 30),
+          GestureDetector(
+            onTap: () {
+              ChildrenPageController.of(context).animateTo(0);
+            },
+            child: Text('Continuar sem entrar'),
           ),
         ],
       ),

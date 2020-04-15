@@ -22,3 +22,33 @@ abstract class _HomeControllerBase with Store {
     }
   }
 }
+
+class ChildrenPageController extends InheritedWidget {
+  final Widget child;
+  final PageController pageController;
+
+  ChildrenPageController({
+    this.pageController,
+    this.child,
+  }) : super(child: child);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) {
+    return oldWidget != this;
+  }
+
+  fazTalCoisa() {
+    print('Imprimiu iruuuuuuu');
+  }
+
+  animateTo(int page) {
+    pageController.animateToPage(
+      page,
+      duration: Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  static ChildrenPageController of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ChildrenPageController>();
+}

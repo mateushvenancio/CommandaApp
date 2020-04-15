@@ -5,12 +5,14 @@ class CustomButton extends StatelessWidget {
   final double width;
   final Widget label;
   final Color backgroundColor;
+  final Function onTap;
 
   const CustomButton({
     this.height = 45,
     this.width = double.infinity,
     @required this.label,
     this.backgroundColor,
+    this.onTap,
   });
 
   @override
@@ -21,6 +23,8 @@ class CustomButton extends StatelessWidget {
       borderRadius: _borderRadius,
       elevation: 2,
       child: InkWell(
+        borderRadius: _borderRadius,
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: _borderRadius,

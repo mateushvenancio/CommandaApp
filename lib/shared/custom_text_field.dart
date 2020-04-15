@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
 
   const CustomTextField({
     Key key,
-    this.label,
+    this.label = '',
     this.padding = 0,
     this.passwordField = false,
   }) : super(key: key);
@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         obscureText: passwordField,
         decoration: InputDecoration(
+          fillColor: Theme.of(context).primaryColor,
           hintText: label,
         ),
       ),
