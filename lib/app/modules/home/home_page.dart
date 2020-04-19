@@ -35,6 +35,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           ),
           ChildrenPageController(
             pageController: _pageController,
+            homeController: controller,
             child: PageView(
               physics: NeverScrollableScrollPhysics(),
               controller: _pageController,

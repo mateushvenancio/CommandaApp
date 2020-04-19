@@ -4,12 +4,14 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final double padding;
   final bool passwordField;
+  final Function(String) onChanged;
 
   const CustomTextField({
     Key key,
     this.label = '',
     this.padding = 0,
     this.passwordField = false,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(padding),
       child: TextField(
+        onChanged: onChanged,
         obscureText: passwordField,
         decoration: InputDecoration(
           fillColor: Theme.of(context).primaryColor,

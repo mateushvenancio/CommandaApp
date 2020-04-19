@@ -9,36 +9,37 @@ abstract class _HomeControllerBase with Store {
   @observable
   bool isLoading = false;
 
-  @action
-  void setLoading(bool value) {
-    isLoading = value;
-  }
+  @observable
+  String loginEmail = '';
+
+  @observable
+  String loginPassword = '';
 
   @action
-  void validate(String value, BuildContext context) {
-    if (value.length > 3) {
-      // Condições
-      Navigator.pushNamed(context, '/qr_scanner');
-    }
-  }
+  void setLoginEmail(String value) => loginEmail = value;
+
+  @action
+  void setLoginPassword(String value) => loginPassword = value;
+
+  @computed
+  bool get isLoginValid =>
+      loginEmail.contains('@') && loginPassword.length >= 6;
 }
 
 class ChildrenPageController extends InheritedWidget {
   final Widget child;
   final PageController pageController;
+  final HomeController homeController;
 
   ChildrenPageController({
     this.pageController,
     this.child,
+    this.homeController,
   }) : super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
     return oldWidget != this;
-  }
-
-  fazTalCoisa() {
-    print('Imprimiu iruuuuuuu');
   }
 
   animateTo(int page) {
