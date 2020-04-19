@@ -1,7 +1,7 @@
+import 'package:commandaapp/app/modules/main_page/pages/menu_components/category.dart';
+import 'package:commandaapp/app/tiles/menu_tile.dart';
 import 'package:commandaapp/model/category.dart';
 import 'package:commandaapp/model/menu_item.dart';
-import 'package:commandaapp/shared/category.dart';
-import 'package:commandaapp/shared/menu_item.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatefulWidget {
@@ -52,6 +52,8 @@ class _MenuState extends State<Menu> {
       category: 'Acompanhamento',
       image:
           'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/batata_frita_sequinhaaa.jpg',
+      rate: [4, 5, 3, 5, 4],
+      cookingTime: 20,
     ),
     MenuItem(
       title: 'Pizza de Calabresa Média',
@@ -61,6 +63,96 @@ class _MenuState extends State<Menu> {
       category: 'Pizza',
       image:
           'https://media-cdn.tripadvisor.com/media/photo-s/18/1a/d5/1e/casteloes.jpg',
+      rate: [1, 3, 4, 5, 2],
+      cookingTime: 45,
+    ),
+    MenuItem(
+      title: 'Batata frita',
+      description: 'Batata frita bem crocante',
+      price: 15.25,
+      discount: 0,
+      category: 'Acompanhamento',
+      image:
+          'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/batata_frita_sequinhaaa.jpg',
+      rate: [4, 5, 3, 5, 4],
+      cookingTime: 20,
+    ),
+    MenuItem(
+      title: 'Pizza de Calabresa Média',
+      description: 'Presunto, queijo, calabresa, tomate, azeitona, bacon',
+      price: 25.15,
+      discount: 15,
+      category: 'Pizza',
+      image:
+          'https://media-cdn.tripadvisor.com/media/photo-s/18/1a/d5/1e/casteloes.jpg',
+      rate: [1, 3, 4, 5, 2],
+      cookingTime: 45,
+    ),
+    MenuItem(
+      title: 'Batata frita',
+      description: 'Batata frita bem crocante',
+      price: 15.25,
+      discount: 0,
+      category: 'Acompanhamento',
+      image:
+          'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/batata_frita_sequinhaaa.jpg',
+      rate: [4, 5, 3, 5, 4],
+      cookingTime: 20,
+    ),
+    MenuItem(
+      title: 'Pizza de Calabresa Média',
+      description: 'Presunto, queijo, calabresa, tomate, azeitona, bacon',
+      price: 25.15,
+      discount: 15,
+      category: 'Pizza',
+      image:
+          'https://media-cdn.tripadvisor.com/media/photo-s/18/1a/d5/1e/casteloes.jpg',
+      rate: [1, 3, 4, 5, 2],
+      cookingTime: 45,
+    ),
+    MenuItem(
+      title: 'Batata frita',
+      description: 'Batata frita bem crocante',
+      price: 15.25,
+      discount: 0,
+      category: 'Acompanhamento',
+      image:
+          'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/batata_frita_sequinhaaa.jpg',
+      rate: [4, 5, 3, 5, 4],
+      cookingTime: 20,
+    ),
+    MenuItem(
+      title: 'Pizza de Calabresa Média',
+      description: 'Presunto, queijo, calabresa, tomate, azeitona, bacon',
+      price: 25.15,
+      discount: 15,
+      category: 'Pizza',
+      image:
+          'https://media-cdn.tripadvisor.com/media/photo-s/18/1a/d5/1e/casteloes.jpg',
+      rate: [1, 3, 4, 5, 2],
+      cookingTime: 45,
+    ),
+    MenuItem(
+      title: 'Batata frita',
+      description: 'Batata frita bem crocante',
+      price: 15.25,
+      discount: 0,
+      category: 'Acompanhamento',
+      image:
+          'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2007/11/batata_frita_sequinhaaa.jpg',
+      rate: [4, 5, 3, 5, 4],
+      cookingTime: 20,
+    ),
+    MenuItem(
+      title: 'Pizza de Calabresa Média',
+      description: 'Presunto, queijo, calabresa, tomate, azeitona, bacon',
+      price: 25.15,
+      discount: 15,
+      category: 'Pizza',
+      image:
+          'https://media-cdn.tripadvisor.com/media/photo-s/18/1a/d5/1e/casteloes.jpg',
+      rate: [1, 3, 4, 5, 2],
+      cookingTime: 45,
     ),
   ];
 
@@ -69,27 +161,14 @@ class _MenuState extends State<Menu> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: listCategory.length,
-              itemBuilder: (context, index) {
-                Category current = listCategory[index];
-                return CategoryTile(current);
-              },
-            ),
-          ),
-          Container(
-            height: 500,
-            width: 500,
-            child: ListView.builder(
-              itemCount: tileMenuItem.length,
-              itemBuilder: (BuildContext context, int index) {
-                return MenuItemTile(tileMenuItem[index]);
-              },
-            ),
+          ListCategory(categories: listCategory),
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: tileMenuItem.length,
+            itemBuilder: (BuildContext context, int index) {
+              return MenuTile(tileMenuItem[index]);
+            },
           ),
         ],
       ),

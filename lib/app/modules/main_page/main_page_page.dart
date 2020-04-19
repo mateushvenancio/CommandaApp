@@ -19,19 +19,7 @@ class _MainPagePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        primary: true,
-        title: Text('Commanda',
-            style: TextStyle(color: Colors.red, fontFamily: 'Lobster')),
-        centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.all(5),
-          child: CircleAvatar(
-            child: Text('M'),
-          ),
-        ),
-      ),
+      appBar: AppBar(),
       body: PageView(
         onPageChanged: (index) {
           setState(() {
@@ -44,11 +32,6 @@ class _MainPagePageState
           MyOrders(),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentTabIndex,
         onTap: (index) {

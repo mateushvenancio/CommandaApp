@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098466378192",
+    "firebase_url": "https://commanda-31df4.firebaseio.com",
+    "project_id": "commanda-31df4",
+    "storage_bucket": "commanda-31df4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098466378192:android:be09f59a622fb2812c79d5",
+        "android_client_info": {
+          "package_name": "br.com.mateusvenancio.commandaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098466378192-0t9sqvvltcqsnsn1ptmup9hm6mf7ned2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWsG2qae68yM2qBYPhEjzt7_BwincTWCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098466378192-0t9sqvvltcqsnsn1ptmup9hm6mf7ned2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
