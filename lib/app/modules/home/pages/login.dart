@@ -79,9 +79,9 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: ChildrenPageController.of(context)
                             .homeController
                             .isLoginValid
-                        ? () {
-                            Navigator.pushReplacementNamed(context, '/main');
-                          }
+                        ? () => ChildrenPageController.of(context)
+                            .homeController
+                            .login(context)
                         : () => _onError(),
                   );
                 },
