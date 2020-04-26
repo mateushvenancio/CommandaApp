@@ -1,8 +1,9 @@
+import 'package:commandaapp/app/modules/main_page/pages/menu_components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'main_page_controller.dart';
+import 'modules/order/order_page.dart';
 import 'pages/menu.dart';
-import 'pages/my_orders.dart';
 
 class MainPagePage extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _MainPagePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: CustomAppBar(),
       body: PageView(
         onPageChanged: (index) {
           setState(() {
@@ -29,7 +30,7 @@ class _MainPagePageState
         controller: pageController,
         children: <Widget>[
           Menu(),
-          MyOrders(),
+          OrderPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

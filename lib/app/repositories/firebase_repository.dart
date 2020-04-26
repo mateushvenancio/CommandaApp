@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commandaapp/app/repositories/repository_interface.dart';
+import 'package:commandaapp/model/menu_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseRepository extends IRepository {
@@ -40,5 +42,33 @@ class FirebaseRepository extends IRepository {
   @override
   logout() {
     FirebaseAuth.instance.signOut();
+  }
+
+  @override
+  Stream<List<MenuItem>> getAllCategories() {
+    return Firestore.instance
+        .collection('store')
+        .document('KJNSkSxyTyLXKwCV6jD6')
+        .collection('products')
+        .snapshots()
+        .map((doc) {
+      return doc.documents.map((doc) {
+        return MenuItem.fromJson(doc);
+      });
+    });
+  }
+
+  @override
+  Stream getAllMenuItems() {
+    return Firestore.instance
+        .collection('store')
+        .document('KJNSkSxyTyLXKwCV6jD6')
+        .collection('products')
+        .snapshots()
+        .map((doc) {
+      return doc.documents.map((doc) {
+        return MenuItem.fromJson(doc);
+      });
+    });
   }
 }

@@ -19,6 +19,16 @@ class MenuItem {
     this.cookingTime = 0,
   });
 
+  MenuItem.fromJson(json) {
+    title = json['title'];
+    description = json['description'];
+    price = json['price'];
+    discount = json['discount'];
+    image = json['image'];
+    category = json['category'];
+    cookingTime = json['cookingTime'];
+  }
+
   mediaRate() {
     double media = 0;
     rate.forEach((rate) {

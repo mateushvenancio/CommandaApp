@@ -1,7 +1,7 @@
+import 'package:commandaapp/app/modules/main_page/pages/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'pages/menu.dart';
-import 'pages/my_orders.dart';
 
 part 'main_page_controller.g.dart';
 
@@ -18,7 +18,7 @@ abstract class _MainPageControllerBase with Store {
         currentPage = Menu();
         break;
       case 1:
-        currentPage = MyOrders();
+        currentPage = Orders();
         break;
       default:
         currentPage = Menu();

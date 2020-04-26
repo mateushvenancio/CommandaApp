@@ -8,4 +8,8 @@ abstract class IRepository {
   facebookLogin();
 
   logout();
+
+  Stream getAllMenuItems();
+
+  Stream getAllCategories();
 }
