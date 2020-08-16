@@ -24,7 +24,9 @@ class CustomButton extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         borderRadius: _borderRadius,
-        onTap: onTap,
+        onTap: () {
+          if (onTap != null) onTap();
+        },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: _borderRadius,

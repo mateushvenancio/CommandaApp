@@ -1,6 +1,7 @@
 import 'package:commandaapp/consts/const_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Commanda',
       theme: ThemeData(
-        fontFamily: 'Poppins',
+        textTheme: GoogleFonts.merriweatherTextTheme(),
         primaryColor: CustomColors.pink,
         accentColor: CustomColors.red,
       ),

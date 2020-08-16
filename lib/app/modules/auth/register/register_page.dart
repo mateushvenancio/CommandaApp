@@ -1,20 +1,23 @@
 import 'package:commandaapp/shared/custom_button.dart';
 import 'package:commandaapp/shared/custom_label.dart';
 import 'package:commandaapp/shared/custom_text_field.dart';
-import 'package:commandaapp/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'register_controller.dart';
 
 class RegisterPage extends StatefulWidget {
+  final String title;
+  const RegisterPage({Key key, this.title = "Register"}) : super(key: key);
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState
+    extends ModularState<RegisterPage, RegisterController> {
   @override
   Widget build(BuildContext context) {
-    final _controller = ChildrenPageController.of(context).homeController;
-
     _onError() {
       Scaffold.of(context).showSnackBar(SnackBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -58,43 +61,32 @@ class _RegisterPageState extends State<RegisterPage> {
               Label('NOME'),
               CustomTextField(
                 label: 'João da Silva',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setRegisterName,
+                onChanged: (a) {},
               ),
               Label('E-MAIL'),
               CustomTextField(
                 label: 'exemplo@mail.com',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setRegisterEmail,
+                onChanged: (a) {},
               ),
               Label('SENHA'),
               CustomTextField(
                 passwordField: true,
                 label: '********',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setRegisterPassword,
+                onChanged: (a) {},
               ),
               Label('CONFIRMAR SENHA'),
               CustomTextField(
                 passwordField: true,
                 label: '********',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setRegisterConfirmPassword,
               ),
               SizedBox(height: 20),
               Observer(builder: (_) {
                 return CustomButton(
-                  label:
-                      Text('CADASTRAR', style: TextStyle(color: Colors.white)),
-                  onTap: _controller.passwordMatch
-                      ? _controller.isRegisterFormValid
-                          ? _controller.register(context)
-                          : () => _onError()
-                      : () => _onPasswordDismatch(),
+                  label: Text(
+                    'CADASTRAR',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {},
                 );
               }),
               SizedBox(height: 10),
@@ -102,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 backgroundColor: Colors.white,
                 label: Text('VOLTAR'),
                 onTap: () {
-                  ChildrenPageController.of(context).animateTo(1);
+                  controller.authStore.goToPage(1);
                 },
               ),
             ],

@@ -1,4 +1,3 @@
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'qr_scanner_controller.dart';
@@ -19,17 +18,15 @@ class _QrScannerPageState
   Widget build(BuildContext context) {
     _scanQrCode() async {
       try {
-        final result = await BarcodeScanner.scan();
-        setState(() {
-          scanResult = result;
-        });
+        // final result = await BarcodeScanner.scan();
+        setState(() {});
         await Navigator.pushReplacementNamed(context, '/main');
       } catch (e) {
         print('Erro: $e');
       }
     }
 
-    if(scanResult == '') _scanQrCode();
+    if (scanResult == '') _scanQrCode();
 
     return Scaffold(
       // appBar: _buildAppBar,

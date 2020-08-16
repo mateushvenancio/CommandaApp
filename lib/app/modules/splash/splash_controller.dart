@@ -15,7 +15,7 @@ abstract class _SplashControllerBase with Store {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
 
     if (user == null) {
-      Modular.to.pushReplacementNamed('/login');
+      Modular.to.pushReplacementNamed('/auth');
     } else {
       Modular.to.pushReplacementNamed('/main');
     }

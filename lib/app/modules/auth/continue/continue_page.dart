@@ -1,14 +1,19 @@
 import 'package:commandaapp/shared/custom_button.dart';
 import 'package:commandaapp/shared/custom_text_field.dart';
-import 'package:commandaapp/app/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'continue_controller.dart';
 
 class ContinuePage extends StatefulWidget {
+  final String title;
+  const ContinuePage({Key key, this.title = "Continue"}) : super(key: key);
+
   @override
   _ContinuePageState createState() => _ContinuePageState();
 }
 
-class _ContinuePageState extends State<ContinuePage> {
+class _ContinuePageState
+    extends ModularState<ContinuePage, ContinueController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +45,7 @@ class _ContinuePageState extends State<ContinuePage> {
             backgroundColor: Colors.white,
             label: Text('VOLTAR'),
             onTap: () {
-              ChildrenPageController.of(context).animateTo(1);
+              controller.authStore.goToPage(1);
             },
           ),
         ],

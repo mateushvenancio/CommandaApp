@@ -1,30 +1,23 @@
-import 'package:commandaapp/app/modules/home/home_controller.dart';
 import 'package:commandaapp/shared/custom_button.dart';
 import 'package:commandaapp/shared/custom_label.dart';
 import 'package:commandaapp/shared/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
+  final String title;
+  const LoginPage({Key key, this.title = "Login"}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
-    _onError() {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'Campo de email ou senha inválidos.',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Theme.of(context).primaryColor,
-        duration: Duration(seconds: 2),
-      ));
-    }
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30),
       color: Colors.white.withOpacity(0.95),
@@ -47,18 +40,14 @@ class _LoginPageState extends State<LoginPage> {
               Container(width: double.infinity, child: Label('email')),
               CustomTextField(
                 label: 'exemplo@mail.com',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setLoginEmail,
+                onChanged: controller.setEmail,
               ),
               SizedBox(height: 20),
               Container(width: double.infinity, child: Label('senha')),
               CustomTextField(
                 passwordField: true,
                 label: '******',
-                onChanged: ChildrenPageController.of(context)
-                    .homeController
-                    .setLoginPassword,
+                onChanged: controller.setSenha,
               ),
               Container(
                 padding: EdgeInsets.all(15),
@@ -73,16 +62,23 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Observer(
                 builder: (_) {
+                  if (controller.isLoading)
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   return CustomButton(
                     backgroundColor: Colors.transparent,
                     label: Text('LOGIN'),
-                    onTap: ChildrenPageController.of(context)
-                            .homeController
-                            .isLoginValid
-                        ? () => ChildrenPageController.of(context)
-                            .homeController
-                            .login(context)
-                        : () => _onError(),
+                    onTap: () {
+                      controller.fazerLogin().then((value) {
+                        if (value != "OK")
+                          controller.mostrarSnackbar(
+                            context,
+                            Colors.red,
+                            value,
+                          );
+                      });
+                    },
                   );
                 },
               ),
@@ -90,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
               CustomButton(
                 label: Text('REGISTRAR', style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  ChildrenPageController.of(context).animateTo(2);
+                  controller.authStore.goToPage(2);
                 },
               ),
               SizedBox(height: 10),
@@ -136,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  ChildrenPageController.of(context).animateTo(0);
+                  controller.authStore.goToPage(0);
                 },
                 child: Text('Continuar sem entrar'),
               ),

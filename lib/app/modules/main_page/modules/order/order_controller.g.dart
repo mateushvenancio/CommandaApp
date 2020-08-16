@@ -6,24 +6,22 @@ part of 'order_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$OrderController on _OrderControllerBase, Store {
   final _$ordersAtom = Atom(name: '_OrderControllerBase.orders');
 
   @override
   ObservableStream<List<MenuItem>> get orders {
-    _$ordersAtom.context.enforceReadPolicy(_$ordersAtom);
-    _$ordersAtom.reportObserved();
+    _$ordersAtom.reportRead();
     return super.orders;
   }
 
   @override
   set orders(ObservableStream<List<MenuItem>> value) {
-    _$ordersAtom.context.conditionallyRunInAction(() {
+    _$ordersAtom.reportWrite(value, super.orders, () {
       super.orders = value;
-      _$ordersAtom.reportChanged();
-    }, _$ordersAtom, name: '${_$ordersAtom.name}_set');
+    });
   }
 
   final _$_OrderControllerBaseActionController =
@@ -31,7 +29,8 @@ mixin _$OrderController on _OrderControllerBase, Store {
 
   @override
   dynamic getOrders() {
-    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction(
+        name: '_OrderControllerBase.getOrders');
     try {
       return super.getOrders();
     } finally {
@@ -41,7 +40,8 @@ mixin _$OrderController on _OrderControllerBase, Store {
 
   @override
   String toString() {
-    final string = 'orders: ${orders.toString()}';
-    return '{$string}';
+    return '''
+orders: ${orders}
+    ''';
   }
 }
