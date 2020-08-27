@@ -24,17 +24,56 @@ mixin _$EmpresaStore on _EmpresaStoreBase, Store {
     });
   }
 
+  final _$produtosAtom = Atom(name: '_EmpresaStoreBase.produtos');
+
+  @override
+  List<MenuItem> get produtos {
+    _$produtosAtom.reportRead();
+    return super.produtos;
+  }
+
+  @override
+  set produtos(List<MenuItem> value) {
+    _$produtosAtom.reportWrite(value, super.produtos, () {
+      super.produtos = value;
+    });
+  }
+
+  final _$comandaAtom = Atom(name: '_EmpresaStoreBase.comanda');
+
+  @override
+  Comanda get comanda {
+    _$comandaAtom.reportRead();
+    return super.comanda;
+  }
+
+  @override
+  set comanda(Comanda value) {
+    _$comandaAtom.reportWrite(value, super.comanda, () {
+      super.comanda = value;
+    });
+  }
+
+  final _$getComandaAsyncAction = AsyncAction('_EmpresaStoreBase.getComanda');
+
+  @override
+  Future getComanda(String lugar) {
+    return _$getComandaAsyncAction.run(() => super.getComanda(lugar));
+  }
+
   final _$getEmpresaAsyncAction = AsyncAction('_EmpresaStoreBase.getEmpresa');
 
   @override
-  Future getEmpresa() {
-    return _$getEmpresaAsyncAction.run(() => super.getEmpresa());
+  Future getEmpresa(String id) {
+    return _$getEmpresaAsyncAction.run(() => super.getEmpresa(id));
   }
 
   @override
   String toString() {
     return '''
-empresa: ${empresa}
+empresa: ${empresa},
+produtos: ${produtos},
+comanda: ${comanda}
     ''';
   }
 }

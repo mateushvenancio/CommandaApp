@@ -1,5 +1,4 @@
 class MenuItem {
-  String id;
   String title;
   String description;
   num price;
@@ -10,7 +9,6 @@ class MenuItem {
   num cookingTime;
 
   MenuItem({
-    this.id,
     this.title,
     this.description,
     this.price,
@@ -21,7 +19,7 @@ class MenuItem {
     this.cookingTime = 0,
   });
 
-  MenuItem.fromJson(json, this.id) {
+  MenuItem.fromJson(json) {
     title = json['title'];
     description = json['description'];
     price = json['price'];
@@ -29,6 +27,18 @@ class MenuItem {
     image = json['image'];
     category = json['category'];
     cookingTime = json['cookingTime'];
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "title": this.title,
+      "description": this.description,
+      "price": this.price,
+      "discount": this.discount,
+      "image": this.image,
+      "category": this.category,
+      "cookingTime": this.cookingTime,
+    };
   }
 
   mediaRate() {

@@ -1,0 +1,11 @@
+class Category {
+  String title;
+  String image;
+
+  Category({this.title, this.image});
+
+  Category.fromJson(json) {
+    title = json['title'];
+    image = json['image'];
+  }
+}

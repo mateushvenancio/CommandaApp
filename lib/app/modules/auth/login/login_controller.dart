@@ -1,5 +1,5 @@
 import 'package:commandaapp/app/modules/auth/auth_controller.dart';
-import 'package:commandaapp/stores/user_store.dart';
+import 'package:commandaapp/stores/auth_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,7 +11,7 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
   final authStore = Modular.get<AuthController>();
-  final userStore = Modular.get<UserStore>();
+  final userStore = Modular.get<AuthStore>();
 
   @observable
   String email = '';

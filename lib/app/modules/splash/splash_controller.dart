@@ -1,23 +1,27 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:commandaapp/stores/auth_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:mobx/mobx.dart';
 part 'splash_controller.g.dart';
 
 class SplashController = _SplashControllerBase with _$SplashController;
 
 abstract class _SplashControllerBase with Store {
+  final userStore = Modular.get<AuthStore>();
+
   _SplashControllerBase() {
     authentication();
   }
 
   authentication() async {
+    await Firebase.initializeApp();
     await Future.delayed(Duration(seconds: 2));
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    await userStore.init();
 
-    if (user == null) {
+    if (userStore.user == null) {
       Modular.to.pushReplacementNamed('/auth');
     } else {
-      Modular.to.pushReplacementNamed('/main');
+      Modular.to.pushReplacementNamed('/home');
     }
   }
 }

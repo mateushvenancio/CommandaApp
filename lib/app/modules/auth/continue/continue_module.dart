@@ -10,8 +10,8 @@ class ContinueModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => ContinuePage()),
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute, child: (_, args) => ContinuePage()),
       ];
 
   static Inject get to => Inject<ContinueModule>.of();

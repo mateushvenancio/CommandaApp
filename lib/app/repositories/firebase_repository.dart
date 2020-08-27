@@ -52,9 +52,9 @@ class FirebaseRepository extends IRepository {
         .collection('products')
         .snapshots()
         .map((doc) {
-      return doc.documents.map((doc) {
-        return MenuItem.fromJson(doc);
-      });
+      // return doc.documents.map((doc) {
+      //   // return MenuItem.fromJson(doc);
+      // });
     });
   }
 
@@ -66,9 +66,9 @@ class FirebaseRepository extends IRepository {
         .collection('products')
         .snapshots()
         .map((doc) {
-      return doc.documents.map((doc) {
-        return MenuItem.fromJson(doc);
-      });
+      // return doc.documents.map((doc) {
+      //   return MenuItem.fromJson(doc);
+      // });
     });
   }
 }

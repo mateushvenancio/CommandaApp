@@ -17,15 +17,19 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  dio: ^3.0.9
-  flutter_mobx: ^1.0.1
-  mobx: ^1.0.2+1
-  flutter_modular: ^0.5.5
+  dio: ^3.0.10
+  flutter_mobx: ^1.1.0+2
+  mobx: ^1.2.1+2
+  flutter_modular: ^2.0.0+1
   font_awesome_flutter: ^8.8.1
-  cloud_firestore: ^0.13.5
-  firebase_auth: ^0.16.0
-  email_validator: ^1.0.4
-  google_fonts: ^1.0.0
+  cloud_firestore: ^0.14.0+2
+  firebase_auth: ^0.18.0+1
+  firebase: ^7.3.0
+  email_validator: ^1.0.5
+  google_fonts: ^1.1.0
+  cached_network_image: ^2.3.1
+  super_qr_reader: ^2.0.0
+  flutter_star_rating: ^0.0.3
   flutter:
     sdk: flutter
 
@@ -35,7 +39,8 @@ dependencies:
 dev_dependencies:
   mockito: ^4.1.1
   mobx_codegen: ^1.0.2
-  build_runner: ^1.8.0
+  modular_codegen: ^2.0.0+1
+  build_runner: ^1.10.1
   flutter_test:
     sdk: flutter
 
