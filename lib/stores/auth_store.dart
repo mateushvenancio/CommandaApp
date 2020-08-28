@@ -40,5 +40,6 @@ abstract class _AuthStoreBase with Store {
         .doc(user.uid)
         .get();
     usuario = Usuario.fromJson(_dSn.data());
+    usuario.id = user.uid;
   }
 }

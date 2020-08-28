@@ -23,21 +23,35 @@ class Comanda {
   Comanda.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     idEmpresa = json['id_empresa'];
-    horaInicio = json['hora_inicio'];
-    horaFim = json['hora_fim'];
+    // horaInicio = json['hora_inicio'];
+    if (json['hora_inicio'] != null) {
+      horaInicio = DateTime.fromMicrosecondsSinceEpoch(
+        json['hora_inicio'].microsecondsSinceEpoch,
+      );
+    }
+    // horaFim = json['hora_fim'];
+    if (json['hora_fim'] != null) {
+      horaFim = DateTime.fromMicrosecondsSinceEpoch(
+        json['hora_fim'].microsecondsSinceEpoch,
+      );
+    }
     lugar = json['lugar'];
     if (json['pedidos'] != null) {
       List<Pedido> _pedidos = [];
-      _pedidos = json['pedidos'].map((e) {
-        return Pedido.fromJson(e);
-      }).toList();
+
+      json['pedidos'].forEach((v) {
+        _pedidos.add(Pedido.fromJson(v));
+      });
+
       this.pedidos = _pedidos;
     }
     if (json['usuarios'] != null) {
       List<Usuario> _usuarios = [];
-      _usuarios = json['usuarios'].map((e) {
-        return Usuario.fromJson(e);
-      }).toList();
+
+      json['usuarios'].forEach((v) {
+        _usuarios.add(Usuario.fromJson(v));
+      });
+
       this.usuarios = _usuarios;
     }
   }
@@ -53,4 +67,6 @@ class Comanda {
       "usuarios": this.usuarios.map((e) => e.toJson()).toList(),
     };
   }
+
+  a() {}
 }

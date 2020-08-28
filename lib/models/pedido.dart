@@ -17,7 +17,11 @@ class Pedido {
   Pedido.fromJson(Map<String, dynamic> json) {
     this.item = MenuItem.fromJson(json['item']);
     this.quantidade = json['quantidade'];
-    this.horaPedido = json['hora_pedido'];
+    if (json['hora_pedido'] != null) {
+      this.horaPedido = DateTime.fromMicrosecondsSinceEpoch(
+        json['hora_pedido'].microsecondsSinceEpoch,
+      );
+    }
     this.usuario = json['usuario'];
   }
 

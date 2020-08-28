@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commandaapp/model/empresa.dart';
 import 'package:commandaapp/model/menu_item.dart';
 import 'package:commandaapp/models/comanda.dart';
-import 'package:commandaapp/models/usuario.dart';
 import 'package:commandaapp/stores/auth_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -33,7 +32,11 @@ abstract class _EmpresaStoreBase with Store {
 
     if (_qSn.docs != null && _qSn.docs.length != 0 && _qSn.docs.first.exists) {
       _comanda = Comanda.fromJson(_qSn.docs.first.data());
-      _comanda.usuarios.add(authStore.usuario);
+      if (!_comanda.usuarios.any((element) {
+        return element.id == authStore.usuario.id;
+      })) {
+        _comanda.usuarios.add(authStore.usuario);
+      }
     } else {
       _comanda = Comanda(
         horaInicio: DateTime.now(),
@@ -42,7 +45,13 @@ abstract class _EmpresaStoreBase with Store {
         pedidos: [],
         usuarios: [],
       );
-      _comanda.usuarios.add(authStore.usuario);
+
+      if (!_comanda.usuarios.any((element) {
+        return element.id == authStore.usuario.id;
+      })) {
+        _comanda.usuarios.add(authStore.usuario);
+      }
+
       var _docRed = await FirebaseFirestore.instance
           .collection('empresa')
           .doc(empresa.id)
