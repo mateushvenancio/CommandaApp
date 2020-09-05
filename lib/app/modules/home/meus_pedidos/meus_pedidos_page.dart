@@ -47,6 +47,11 @@ class _MeusPedidosPageState
                       '${e.horaPedido.day.toString().padLeft(2, '0')}/${e.horaPedido.month.toString().padLeft(2, '0')} '
                       '${e.horaPedido.hour.toString().padLeft(2, '0')}:${e.horaPedido.minute.toString().padLeft(2, '0')}',
                     ),
+                    trailing: Text(
+                      'R\$ ' +
+                          (e.quantidade * e.item.totalPriceWithDiscount)
+                              .toStringAsFixed(2),
+                    ),
                   );
                 })
                 .toList(),
