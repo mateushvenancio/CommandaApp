@@ -1,5 +1,6 @@
 import 'package:commandaapp/app/app_controller.dart';
 import 'package:commandaapp/app/modules/auth/auth_module.dart';
+import 'package:commandaapp/app/modules/home/cardapio/checkout_item/checkout_item_module.dart';
 import 'package:commandaapp/app/modules/home/home_module.dart';
 import 'package:commandaapp/app/modules/splash/splash_module.dart';
 import 'package:commandaapp/app/repositories/firebase_repository.dart';
@@ -29,6 +30,11 @@ class AppModule extends MainModule {
         ModularRouter(
           '/home',
           module: HomeModule(),
+          transition: TransitionType.fadeIn,
+        ),
+        ModularRouter(
+          '/checkout_item',
+          module: CheckoutItemModule(),
           transition: TransitionType.fadeIn,
         ),
       ];

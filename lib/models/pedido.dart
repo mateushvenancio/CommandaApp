@@ -6,12 +6,14 @@ class Pedido {
   int quantidade;
   DateTime horaPedido;
   Usuario usuario;
+  bool concluido = false;
 
   Pedido({
     this.item,
     this.quantidade,
     this.horaPedido,
     this.usuario,
+    this.concluido,
   });
 
   Pedido.fromJson(Map<String, dynamic> json) {
@@ -22,7 +24,8 @@ class Pedido {
         json['hora_pedido'].microsecondsSinceEpoch,
       );
     }
-    this.usuario = json['usuario'];
+    this.usuario = Usuario.fromJson(json['usuario']);
+    this.concluido = json['concluido'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +34,7 @@ class Pedido {
       "quantidade": this.quantidade,
       "hora_pedido": this.horaPedido,
       "usuario": this.usuario.toJson(),
+      "concluido": this.concluido,
     };
   }
 }

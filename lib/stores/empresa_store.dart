@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:commandaapp/model/empresa.dart';
-import 'package:commandaapp/model/menu_item.dart';
 import 'package:commandaapp/models/comanda.dart';
+import 'package:commandaapp/models/empresa.dart';
+import 'package:commandaapp/models/menu_item.dart';
+import 'package:commandaapp/models/pedido.dart';
 import 'package:commandaapp/stores/auth_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -28,6 +29,7 @@ abstract class _EmpresaStoreBase with Store {
         .doc(empresa.id)
         .collection('comandas')
         .where('lugar', isEqualTo: lugar)
+        .where('hora_fim', isNull: true)
         .get();
 
     if (_qSn.docs != null && _qSn.docs.length != 0 && _qSn.docs.first.exists) {
@@ -68,6 +70,20 @@ abstract class _EmpresaStoreBase with Store {
         .set(_comanda.toJson());
 
     comanda = _comanda;
+
+    FirebaseFirestore.instance
+        .collection('empresa')
+        .doc(empresa.id)
+        .collection('comandas')
+        .doc(comanda.id)
+        .snapshots()
+        .listen((event) {
+      if (event.data() != null) {
+        print('PASSOU AQUI URRUUUUUUUUUUUU');
+        comanda = Comanda.fromJson(event.data());
+        comanda.id = event.id;
+      }
+    });
   }
 
   @action
@@ -83,9 +99,21 @@ abstract class _EmpresaStoreBase with Store {
         .get();
 
     _p.docs.forEach((element) {
-      _produtos.add(MenuItem.fromJson(element.data, element.id));
+      _produtos.add(MenuItem.fromJson(element.data()));
     });
 
     produtos = _produtos;
+  }
+
+  @action
+  addPedido(Pedido pedido) async {
+    comanda.pedidos.add(pedido);
+
+    await FirebaseFirestore.instance
+        .collection('empresa')
+        .doc(empresa.id)
+        .collection('comandas')
+        .doc(comanda.id)
+        .update(comanda.toJson());
   }
 }

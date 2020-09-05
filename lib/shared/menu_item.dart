@@ -1,4 +1,4 @@
-import 'package:commandaapp/model/menu_item.dart';
+import 'package:commandaapp/models/menu_item.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemTile extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commandaapp/app/repositories/repository_interface.dart';
-import 'package:commandaapp/model/menu_item.dart';
+import 'package:commandaapp/models/menu_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseRepository extends IRepository {

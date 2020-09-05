@@ -68,6 +68,13 @@ mixin _$EmpresaStore on _EmpresaStoreBase, Store {
     return _$getEmpresaAsyncAction.run(() => super.getEmpresa(id));
   }
 
+  final _$addPedidoAsyncAction = AsyncAction('_EmpresaStoreBase.addPedido');
+
+  @override
+  Future addPedido(Pedido pedido) {
+    return _$addPedidoAsyncAction.run(() => super.addPedido(pedido));
+  }
+
   @override
   String toString() {
     return '''

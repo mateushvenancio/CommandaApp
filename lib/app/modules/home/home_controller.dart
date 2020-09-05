@@ -10,6 +10,7 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+  final modulesListController = RouterOutletListController();
   final authStore = Modular.get<AuthStore>();
   final empresaStore = Modular.get<EmpresaStore>();
 
@@ -26,13 +27,18 @@ abstract class _HomeControllerBase with Store {
   @action
   setEmpresaELugar(String value) async {
     isLoading = true;
-    // try {
-    await empresaStore.getEmpresa(value.split('%%').last);
-    await empresaStore.getComanda(value.split('%%').first.replaceAll('#', ''));
-    // } catch (e) {
-    //   print(e);
-    //   hint = 'QR Code inválido';
-    // }
+
+    if (value != null && value.contains('%%')) {
+      try {
+        await empresaStore.getEmpresa(value.split('%%').last);
+        await empresaStore
+            .getComanda(value.split('%%').first.replaceAll('#', ''));
+      } catch (e) {
+        hint = 'Aconteceu algum erro...';
+      }
+    } else {
+      hint = 'QR Code inválido';
+    }
 
     isLoading = false;
   }
