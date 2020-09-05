@@ -1,5 +1,6 @@
 import 'package:commandaapp/app/app_controller.dart';
 import 'package:commandaapp/app/modules/auth/auth_module.dart';
+import 'package:commandaapp/app/modules/detalhe_usuario/detalhe_usuario_module.dart';
 import 'package:commandaapp/app/modules/home/cardapio/checkout_item/checkout_item_module.dart';
 import 'package:commandaapp/app/modules/home/home_module.dart';
 import 'package:commandaapp/app/modules/splash/splash_module.dart';
@@ -35,6 +36,11 @@ class AppModule extends MainModule {
         ModularRouter(
           '/checkout_item',
           module: CheckoutItemModule(),
+          transition: TransitionType.fadeIn,
+        ),
+        ModularRouter(
+          '/detalhe_usuario',
+          module: DetalheUsuarioModule(),
           transition: TransitionType.fadeIn,
         ),
       ];

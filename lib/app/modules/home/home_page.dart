@@ -120,7 +120,20 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 ),
               ),
             ),
-            Expanded(child: Container()),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  ListTile(
+                    leading: Icon(FontAwesomeIcons.user),
+                    title: Text('Meu perfil'),
+                    onTap: () {
+                      Modular.to.pushNamed('/detalhe_usuario');
+                    },
+                  ),
+                ],
+              ),
+            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.power_settings_new),
