@@ -1,3 +1,6 @@
+import 'package:commandaapp/models/pedido.dart';
+import 'package:commandaapp/stores/auth_store.dart';
+import 'package:commandaapp/stores/empresa_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -8,11 +11,8 @@ class DetalheUsuarioController = _DetalheUsuarioControllerBase
     with _$DetalheUsuarioController;
 
 abstract class _DetalheUsuarioControllerBase with Store {
-  @observable
-  int value = 0;
+  final empresaStore = Modular.get<EmpresaStore>();
 
-  @action
-  void increment() {
-    value++;
-  }
+  @computed
+  List<Pedido> get pedidos => empresaStore?.comanda?.pedidos ?? [];
 }

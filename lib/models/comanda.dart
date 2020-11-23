@@ -21,7 +21,9 @@ class Comanda {
   });
 
   Comanda.fromJson(Map<String, dynamic> json) {
+    if(json['id'] != null){
     id = json['id'];
+    }
     idEmpresa = json['id_empresa'];
     // horaInicio = json['hora_inicio'];
     if (json['hora_inicio'] != null) {

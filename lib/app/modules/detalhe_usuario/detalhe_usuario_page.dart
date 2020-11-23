@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commandaapp/stores/auth_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detalhe_usuario_controller.dart';
 
@@ -57,6 +58,34 @@ class _DetalheUsuarioPageState
               ],
             ),
           ),
+          Divider(),
+          ListTile(
+            title: Text('Meus pedidos:'),
+          ),
+          Observer(builder: (_) {
+            if (controller.pedidos.isEmpty) {
+              return Center(child: Text('Sem pedidos ainda!'));
+            }
+            return ListView(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: controller.pedidos.map((e) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(controller.empresaStore?.empresa?.nome ?? ''),
+                    ListTile(
+                      title: Text(e.item?.title ?? ''),
+                      subtitle: Text(
+                        'Quantidade: ${e.quantidade} - Valor total: ${e.item?.totalPriceWithDiscount.toStringAsFixed(2).replaceAll('.', ',') ?? ''}',
+                      ),
+                    ),
+                    Divider(),
+                  ],
+                );
+              }).toList(),
+            );
+          }),
         ],
       ),
     );
